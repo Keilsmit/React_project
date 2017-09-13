@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import actors from "../data/actors";
 
+const genders = {
+  1: "Female",
+  2: "Male"
+}
 
 export default class Section extends Component {
   render() {
@@ -7,12 +12,33 @@ export default class Section extends Component {
       <section>
         <img src="https://fillmurray.com/300/300" alt="Bill Murray"/>
         <ul className="list-group">
-          <li className="list-group-item">Lorem ipsum dolor sit amet eiusmod tempor  quis nostrud exercitation</li>
-          <li className="list-group-item">consectetur adipisicing elit, sed do u irure dolor  pariatur.</li>
-          <li className="list-group-item">incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</li>
-          <li className="list-group-item">llamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute</li>
-          <li className="list-group-item">in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla</li>
-          <li className="list-group-item">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+          {actors.map(actor =>
+            <li className="list-group-item" key={actor.id}>
+              <ul>
+                <li>
+                  <div>Name: {actor.name} </div>
+                </li>
+                <li>
+                  <div>Alias: {actor.also_known_as}</div>
+                </li>
+                <li>
+                  <div>Popularity: (?/10): {actor.popularity}</div>
+                </li>
+                <li>
+                  <div>Birthday: {actor.birthday}</div>
+                </li>
+
+                <li>
+                  <div>Date of Death: {actor.deathday ? "Still Alive" : actor.deathday}</div>
+                </li>
+                <li>
+                  <div>Gender: {genders[actor.gendor]}</div>
+                  <div>Gender: {actor.gender === 1 ? "Female" : "Male"}</div>
+                </li>
+                <p>Biography: {actor.biography}</p>
+              </ul>
+            </li>
+          )}
         </ul>
       </section>
     )
